@@ -11,7 +11,7 @@ if not exist "%SOURCE%\manifest.json" (
 
 if exist "%~dp0.git" (
     echo Checking for repository updates...
-    git -C "%~dp0" pull --ff-only origin master
+    git -C "%~dp0." pull --ff-only origin master
     if errorlevel 1 (
         echo ERROR: Git update failed. Extension files were not changed.
         pause
