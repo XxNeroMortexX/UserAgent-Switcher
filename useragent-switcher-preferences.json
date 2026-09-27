@@ -1,0 +1,41 @@
+{
+  "blacklist": [],
+  "custom": {
+    "*": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+    "www.youtube.com": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36 DMOST/2.0.0 (; LGE; webOSTV; WEBOS6.3.2 03.34.95; W6_lm21a;)"
+  },
+  "last-update": 1783044069917,
+  "mode": "custom",
+  "parser": {},
+  "popular-browsers": [
+    "Internet Explorer",
+    "Safari",
+    "Chrome",
+    "Firefox",
+    "Opera",
+    "Edge",
+    "Vivaldi"
+  ],
+  "popular-oss": [
+    "Windows",
+    "Mac OS",
+    "Linux",
+    "Chromium OS",
+    "Android"
+  ],
+  "protected": [
+    "google.com/recaptcha",
+    "gstatic.com/recaptcha",
+    "accounts.google.com",
+    "accounts.youtube.com",
+    "gitlab.com/users/sign_in",
+    "challenges.cloudflare.com"
+  ],
+  "remote-address": "",
+  "ua": "",
+  "user-styling": "",
+  "userAgentData": true,
+  "whitelist": [],
+  "json-guid": "226b5ca1-c828-4ddb-bd76-bb033ea1d002",
+  "json-forced": false
+}
