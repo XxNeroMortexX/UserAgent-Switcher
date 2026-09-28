@@ -30,6 +30,91 @@
     <span id="toggle-custom-desc" data-localize="description">Description</span>
   </div>
   <p for="toggle-custom-desc" class="note hidden"><span data-localize="customModeDescription">Resolve the user-agent string from a JSON object, if available. Otherwise, use the default user-agent string or the one specified by the user through the popup interface. Use "*" as the hostname to match all domains. If an array of user-agent strings is provided instead of a fixed string, you can randomly select from these options, with the selection resetting after the browser session ends. If a key is a comma-separated list of hostnames and the value is an array, all specified hostnames will share the same user-agent string for the duration of the browser session.</span> <a href="#" id="sample" data-localize="insertSample">Insert a sample</a>.</p>
+  <section id="youtube-tv-picker">
+    <h2>YouTube TV device</h2>
+    <p>Choose an identity for www.youtube.com. Other sites keep their normal browser identity unless you have other custom rules.</p>
+    <label for="youtube-tv-agent">TV identity:</label>
+        <select id="youtube-tv-agent">
+      <option value="lg-working">Mine Special — LG webOS (tested)</option>
+      <optgroup label="Roku — examples, untested">
+        <option value="deviceatlas-roku-1">Example 1</option>
+        <option value="deviceatlas-roku-2">Example 2</option>
+        <option value="deviceatlas-roku-3">Example 3</option>
+        <option value="deviceatlas-roku-4">Example 4</option>
+      </optgroup>
+      <optgroup label="Samsung Tizen TV — examples, untested">
+        <option value="deviceatlas-samsung-tizen-tv-1">Example 1</option>
+        <option value="deviceatlas-samsung-tizen-tv-2">Example 2</option>
+        <option value="deviceatlas-samsung-tizen-tv-3">Example 3</option>
+        <option value="deviceatlas-samsung-tizen-tv-4">Example 4</option>
+        <option value="deviceatlas-samsung-tizen-tv-5">Example 5</option>
+        <option value="deviceatlas-samsung-tizen-tv-6">Example 6</option>
+      </optgroup>
+      <optgroup label="LG webOS — examples, untested">
+        <option value="deviceatlas-lg-webos-1">Example 1</option>
+        <option value="deviceatlas-lg-webos-2">Example 2</option>
+        <option value="deviceatlas-lg-webos-3">Example 3</option>
+      </optgroup>
+      <optgroup label="Apple TV — examples, untested">
+        <option value="deviceatlas-apple-tv-1">Example 1</option>
+        <option value="deviceatlas-apple-tv-2">Example 2</option>
+        <option value="deviceatlas-apple-tv-3">Example 3</option>
+        <option value="deviceatlas-apple-tv-4">Example 4</option>
+      </optgroup>
+      <optgroup label="Amazon Fire TV (Fire OS) — examples, untested">
+        <option value="deviceatlas-amazon-fire-tv-fire-os-1">Example 1</option>
+        <option value="deviceatlas-amazon-fire-tv-fire-os-2">Example 2</option>
+        <option value="deviceatlas-amazon-fire-tv-fire-os-3">Example 3</option>
+        <option value="deviceatlas-amazon-fire-tv-fire-os-4">Example 4</option>
+      </optgroup>
+      <optgroup label="Amazon Fire TV (Vega OS / Kepler) — examples, untested">
+        <option value="deviceatlas-amazon-fire-tv-vega-os-kepler-1">Example 1</option>
+        <option value="deviceatlas-amazon-fire-tv-vega-os-kepler-2">Example 2</option>
+        <option value="deviceatlas-amazon-fire-tv-vega-os-kepler-3">Example 3</option>
+        <option value="deviceatlas-amazon-fire-tv-vega-os-kepler-4">Example 4</option>
+        <option value="deviceatlas-amazon-fire-tv-vega-os-kepler-5">Example 5</option>
+        <option value="deviceatlas-amazon-fire-tv-vega-os-kepler-6">Example 6</option>
+      </optgroup>
+      <optgroup label="Google TV and Chromecast — examples, untested">
+        <option value="deviceatlas-google-tv-and-chromecast-1">Example 1</option>
+        <option value="deviceatlas-google-tv-and-chromecast-2">Example 2</option>
+        <option value="deviceatlas-google-tv-and-chromecast-3">Example 3</option>
+      </optgroup>
+      <optgroup label="Sony BRAVIA — examples, untested">
+        <option value="deviceatlas-sony-bravia-1">Example 1</option>
+        <option value="deviceatlas-sony-bravia-2">Example 2</option>
+        <option value="deviceatlas-sony-bravia-3">Example 3</option>
+      </optgroup>
+      <optgroup label="TCL — examples, untested">
+        <option value="deviceatlas-tcl-1">Example 1</option>
+        <option value="deviceatlas-tcl-2">Example 2</option>
+        <option value="deviceatlas-tcl-3">Example 3</option>
+      </optgroup>
+      <optgroup label="Hisense VIDAA — examples, untested">
+        <option value="deviceatlas-hisense-vidaa-1">Example 1</option>
+        <option value="deviceatlas-hisense-vidaa-2">Example 2</option>
+      </optgroup>
+      <optgroup label="HbbTV (broadcast-hybrid) — examples, untested">
+        <option value="deviceatlas-hbbtv-broadcast-hybrid-1">Example 1</option>
+        <option value="deviceatlas-hbbtv-broadcast-hybrid-2">Example 2</option>
+        <option value="deviceatlas-hbbtv-broadcast-hybrid-3">Example 3</option>
+        <option value="deviceatlas-hbbtv-broadcast-hybrid-4">Example 4</option>
+      </optgroup>
+      <optgroup label="PlayStation and Xbox — examples, untested">
+        <option value="deviceatlas-playstation-and-xbox-1">Example 1</option>
+        <option value="deviceatlas-playstation-and-xbox-2">Example 2</option>
+        <option value="deviceatlas-playstation-and-xbox-3">Example 3</option>
+      </optgroup>
+      <option value="custom">My own TV user-agent string</option>
+    </select>
+    <input id="youtube-tv-custom" type="text" placeholder="Paste a TV user-agent string" hidden>
+    <button id="youtube-tv-apply" type="button">Use for YouTube</button>
+    <p>Current YouTube identity: <code id="youtube-tv-current">Loading…</code></p>
+    <p>Selected string: <code id="youtube-tv-preview"></code></p>
+    <p class="note">The LG working setup is tested. Other identities may behave differently.
+      <a href="https://deviceatlas.com/blog/list-smart-tv-user-agent-strings" target="_blank" rel="noopener noreferrer">TV user-agent examples</a>
+    </p>
+  </section>
   <textarea id="custom" rows="8" wrap="off"></textarea>
 
   <div class="checked">

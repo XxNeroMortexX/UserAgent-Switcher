@@ -27,3 +27,20 @@ Git checkout, it first pulls changes from this fork. For Chrome, Edge, Opera, Br
 reload the temporary add-on through `about:debugging`.
 
 The installer copies only the `v3` extension files. The original exported preferences JSON remains in this repository.
+
+## TV identity picker
+
+In the extension's Options page, the **YouTube TV device** picker appears
+beside Custom Mode. **Mine Special — LG webOS (tested)** is the first choice
+and the default on a fresh installation. The picker also includes 45 complete
+user-agent examples from the DeviceAtlas smart TV list, grouped by device
+family, plus a field for a custom string:
+
+https://deviceatlas.com/blog/list-smart-tv-user-agent-strings
+
+Selecting an entry previews its full string. Click **Use for YouTube** to
+save it as the `www.youtube.com` entry in the existing Custom Mode JSON.
+Other custom rules remain in place. Only Mine Special has been confirmed
+to work with this PC YouTube and phone remote setup; other examples are
+provided for experimentation. Import Settings and Export Settings remain
+available.

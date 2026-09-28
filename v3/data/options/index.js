@@ -134,6 +134,117 @@ function restore() {
 document.addEventListener('DOMContentLoaded', restore);
 document.getElementById('save').addEventListener('click', save);
 
+const youtubeTvAgents = {
+  'lg-working': "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36 DMOST/2.0.0 (; LGE; webOSTV; WEBOS6.3.2 03.34.95; W6_lm21a;)",
+  'deviceatlas-roku-1': "Roku/DVP-15.2",
+  'deviceatlas-roku-2': "Roku/DVP-15.2 (15.2.4.3429-81)",
+  'deviceatlas-roku-3': "Roku/DVP-14.1 (14.1.4.7709-CU)",
+  'deviceatlas-roku-4': "Roku/DVP-13.0 (13.0.0.4220-AB)",
+  'deviceatlas-samsung-tizen-tv-1': "Mozilla/5.0 (SMART-TV; Linux; Tizen 9.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/8.0 Chrome/120.0.6099.5 TV Safari/537.36",
+  'deviceatlas-samsung-tizen-tv-2': "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/120.0.6099.5 TV Safari/537.36",
+  'deviceatlas-samsung-tizen-tv-3': "Mozilla/5.0 (SMART-TV; Linux; Tizen 9.0)",
+  'deviceatlas-samsung-tizen-tv-4': "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.5) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.0 Chrome/94.0.4606.31 TV Safari/537.36",
+  'deviceatlas-samsung-tizen-tv-5': "Mozilla/5.0 (SMART-TV; Linux; Tizen 2.3) AppleWebKit/538.1 (KHTML, like Gecko) SamsungBrowser/1.0 TV Safari/538.1",
+  'deviceatlas-samsung-tizen-tv-6': "Mozilla/5.0 (SMART-TV; Linux; Tizen 2.2; SAMSUNG SM-Z910F) AppleWebKit/537.3 (KHTML, like Gecko) Version/2.2 TV Safari/538.1",
+  'deviceatlas-lg-webos-1': "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.270 Safari/537.36 WebAppManager",
+  'deviceatlas-lg-webos-2': "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.2.1 Chrome/38.0.2125.122 Safari/537.36 WebAppManager",
+  'deviceatlas-lg-webos-3': "Mozilla/5.0 (Web0S; Linux/SmartTV)",
+  'deviceatlas-apple-tv-1': "AppleCoreMedia/1.0.0.23L5443g (Apple TV; U; CPU OS 26_5 like Mac OS X; en_gb)",
+  'deviceatlas-apple-tv-2': "AppleCoreMedia/1.0.0.22J357 (Apple TV; U; CPU OS 18_0 like Mac OS X; en_us)",
+  'deviceatlas-apple-tv-3': "com.google.tvos.GoogleInteractiveMediaAds/4.14.1 (Apple TV; CPU OS 26_4 like Mac OS X)",
+  'deviceatlas-apple-tv-4': "PrimeVideo/2.9.1 (AppleTV6,2; tvOS 26.4; Scale/2.0)",
+  'deviceatlas-amazon-fire-tv-fire-os-1': "Mozilla/5.0 (Linux; Android 11; AFTKM) AppleWebKit/537.36 (KHTML, like Gecko) Silk/146.1.122 like Chrome/146.0.7680.165 Safari/537.36",
+  'deviceatlas-amazon-fire-tv-fire-os-2': "Mozilla/5.0 (Linux; Android 9; AFTSS) AppleWebKit/537.36 (KHTML, like Gecko) Silk/138.13.4 like Chrome/138.0.7204.244 Safari/537.36",
+  'deviceatlas-amazon-fire-tv-fire-os-3': "Mozilla/5.0 (Linux; Android 5.1.1; AFTT Build/LVY48F; wv)",
+  'deviceatlas-amazon-fire-tv-fire-os-4': "Mozilla/5.0 (Linux; Android 9; AFTKA)",
+  'deviceatlas-amazon-fire-tv-vega-os-kepler-1': "Kepler/1.1 (Linux; AFTCL001)",
+  'deviceatlas-amazon-fire-tv-vega-os-kepler-2': "Mozilla/5.0 (Linux; Kepler 1.1; AFTCA002 user/1234; wv) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Chrome/132.0.6834.209 Safari/537.36",
+  'deviceatlas-amazon-fire-tv-vega-os-kepler-3': "Amazon AFTCA002 Kepler/1.1 espn/2026.3.1 NativeClientPlatform/2025.09.10",
+  'deviceatlas-amazon-fire-tv-vega-os-kepler-4': "Amazon AFTCA002 Kepler/1.1 Hulu/1.43.0 NativeClientPlatform/2025.09.8",
+  'deviceatlas-amazon-fire-tv-vega-os-kepler-5': "Kepler/1.1 (Linux; AFTCA002)",
+  'deviceatlas-amazon-fire-tv-vega-os-kepler-6': "Mozilla/5.0 (Linux; Kepler 1.1; AFTCA002 user/1234; wv) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Chrome/130.0.6723.192 Safari/537.36",
+  'deviceatlas-google-tv-and-chromecast-1': "Mozilla/5.0 (Linux; Android 14; Chromecast HD Build/UTTC.250917.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/146.0.7680.177 Mobile Safari/537.36",
+  'deviceatlas-google-tv-and-chromecast-2': "Mozilla/5.0 (Linux; Android 14; Google TV Streamer Build/UTTK.250729.004; wv)",
+  'deviceatlas-google-tv-and-chromecast-3': "Mozilla/5.0 (Linux; Android 14; Chromecast Build/UTTC.250917.004; wv)",
+  'deviceatlas-sony-bravia-1': "Mozilla/5.0 (Linux; Android 14; BRAVIA VU31 Build/UKR1.240726.001; wv)",
+  'deviceatlas-sony-bravia-2': "Mozilla/5.0 (Linux; Android 12; BRAVIA VH1 Build/STT2.230505.001.S101; wv)",
+  'deviceatlas-sony-bravia-3': "Mozilla/5.0 (Linux; Android 9; BRAVIA 4K GB Build/PTT1.190515.001.S54; wv)",
+  'deviceatlas-tcl-1': "Mozilla/5.0 (Linux; Android 12; TCL TV Build/TQ1A.230205.002; wv)",
+  'deviceatlas-tcl-2': "Mozilla/5.0 (Linux; Android 11; TCL TV Build/RP1A.200720.011; wv)",
+  'deviceatlas-tcl-3': "Mozilla/5.0 (Linux; Android 9; TCL TV Build/QT.200305.002; wv)",
+  'deviceatlas-hisense-vidaa-1': "Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.146 Odin/111.5563.5.1 Safari/537.36 Model/VIDAA-MTK9603 VIDAA/9.0(Hisense;SmartTV;65E70LEVS;MTK9603/V0000.09.09R.P0930;UHD;65E7LE;)",
+  'deviceatlas-hisense-vidaa-2': "Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.146 Odin/111.5563.5.1 Safari/537.36 Model/VIDAA-MT9602 VIDAA/9.0(Hisense;SmartTV;65A53FEVS;MTK9602/V0000.09.09A.P0930;UHD;65A5FE;)",
+  'deviceatlas-hbbtv-broadcast-hybrid-1': "Mozilla/5.0 (Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36 OPR/31.0.1890.0 OMI/4.6.1.40.Dominik2.0 VSTVB MB100 HbbTV/1.2.1 (; TELEFUNKEN; MB110; 2.9.8.0; ;) SmartTvA/3.0.0",
+  'deviceatlas-hbbtv-broadcast-hybrid-2': "Mozilla/5.0 (Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 OPR/25.0.1620.0 OMI/4.3.18.7.Dominik.0 VSTVB MB100 HbbTV/1.2.1 (; PANASONIC; MB100; 0.1.34.5; ;) SmartTvA/3.0.0",
+  'deviceatlas-hbbtv-broadcast-hybrid-3': "Mozilla/5.0 (Linux; Andr0id 10; BRAVIA 4K VH22) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36 OPR/46.0.2207.0 OMI/4.21.0.273.DIA6.234 HbbTV/1.5.1 (+DRM; Sony; KD-43X75WL; PKG6.7480.0852EUA; ; com.sony.HE.G4.4K; ) sony.hbbtv.tv.G4.2023HE.4K LaTivu_1.0.1_2023",
+  'deviceatlas-hbbtv-broadcast-hybrid-4': "Mozilla/5.0 Cobalt/23.0.0.0 skia Starboard/14 HbbTV/1.0.0 FVC/9.0 LaTivu_2.0.0_2024 VIDAA-MTK9618 VIDAA/U9.0",
+  'deviceatlas-playstation-and-xbox-1': "Mozilla/5.0 (PlayStation; PlayStation 5/13.00) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+  'deviceatlas-playstation-and-xbox-2': "Mozilla/5.0 (PlayStation; PlayStation 4/13.50) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+  'deviceatlas-playstation-and-xbox-3': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; Xbox; Xbox One) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edge/44.18363.8131"
+};
+
+const youtubeTvSelect = document.getElementById('youtube-tv-agent');
+const youtubeTvCustom = document.getElementById('youtube-tv-custom');
+const youtubeTvCurrent = document.getElementById('youtube-tv-current');
+
+youtubeTvSelect.addEventListener('change', () => {
+  youtubeTvCustom.hidden = youtubeTvSelect.value !== 'custom';
+});
+
+function showYoutubeTvPreview() {
+  const choice = youtubeTvSelect.value;
+  document.getElementById('youtube-tv-preview').textContent =
+    choice === 'custom' ? youtubeTvCustom.value : (youtubeTvAgents[choice] || '');
+}
+youtubeTvSelect.addEventListener('change', showYoutubeTvPreview);
+youtubeTvCustom.addEventListener('input', showYoutubeTvPreview);
+function showCurrentYoutubeTvAgent() {
+  chrome.storage.local.get({custom: {}}, prefs => {
+    const agent = prefs.custom['www.youtube.com'] || '';
+    const known = Object.entries(youtubeTvAgents).find(([, value]) => value === agent);
+    youtubeTvSelect.value = known ? known[0] : (agent ? 'custom' : '');
+    youtubeTvCustom.hidden = youtubeTvSelect.value !== 'custom';
+    if (youtubeTvSelect.value === 'custom') {
+      youtubeTvCustom.value = agent;
+    }
+    youtubeTvCurrent.textContent = known
+      ? youtubeTvSelect.selectedOptions[0].textContent
+      : (agent || 'No YouTube rule');
+    youtubeTvCurrent.title = agent;
+    showYoutubeTvPreview();
+  });
+}
+document.addEventListener('DOMContentLoaded', showCurrentYoutubeTvAgent);
+
+document.getElementById('youtube-tv-apply').addEventListener('click', () => {
+  const choice = youtubeTvSelect.value;
+  const agent = choice === 'custom'
+    ? youtubeTvCustom.value.trim()
+    : youtubeTvAgents[choice];
+  if (!agent) {
+    notify('Choose a TV identity or enter a custom string', 4000);
+    return;
+  }
+
+  let rules;
+  try {
+    rules = JSON.parse(document.getElementById('custom').value);
+    if (!rules || typeof rules !== 'object' || Array.isArray(rules)) {
+      throw new Error('Expected a JSON object');
+    }
+  }
+  catch (error) {
+    notify('Fix the Custom Mode JSON first: ' + error.message, 5000);
+    return;
+  }
+
+  rules['www.youtube.com'] = agent;
+  document.getElementById('custom').value = JSON.stringify(rules, null, 2);
+  document.getElementById('mode-custom').checked = true;
+  save();
+  youtubeTvCurrent.textContent = youtubeTvSelect.selectedOptions[0].textContent;
+  youtubeTvCurrent.title = agent;
+});
 document.getElementById('sample').addEventListener('click', e => {
   e.preventDefault();
 
