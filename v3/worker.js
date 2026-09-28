@@ -6,6 +6,26 @@ if (typeof importScripts !== 'undefined') {
   self.importScripts('safeguard.js', 'managed.js');
 }
 
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.get(['mode', 'custom'], async prefs => {
+    // Apply the fork's defaults only when the browser has no saved settings.
+    if (prefs.mode !== undefined || prefs.custom !== undefined) {
+      return;
+    }
+    try {
+      const response = await fetch(chrome.runtime.getURL('youtube-pc-defaults.json'));
+      if (!response.ok) {
+        throw new Error('Could not read YouTube PC defaults');
+      }
+      const defaults = await response.json();
+      await chrome.storage.local.set(defaults);
+      chrome.contextMenus.update('custom', {checked: true}, () => chrome.runtime.lastError);
+    }
+    catch (error) {
+      console.error('[YouTube PC defaults]', error);
+    }
+  });
+});
 const network = new Network();
 
 chrome.storage.onChanged.addListener((ps, type) => {

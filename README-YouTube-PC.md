@@ -1,28 +1,29 @@
 # YouTube on PC with a phone remote
 
-This fork includes a Windows setup for the User-Agent Switcher and Manager
-extension. The included preferences make youtube.com/tv identify as an LG
-webOS TV, so the YouTube phone app can connect to the PC screen.
+This fork includes a Windows setup for User-Agent Switcher and Manager.
+The included preferences identify youtube.com/tv as an LG webOS TV so
+the YouTube phone app can connect to the PC screen.
 
 ## Install
 
-1. Run `Install-YouTube-PC.bat`.
-2. In Chrome, open `chrome://extensions` and turn on Developer mode.
-3. Click **Load unpacked** and select the folder printed by the batch file
-   (`%LOCALAPPDATA%\UserAgentSwitcherDev`).
-4. Open the extension's Options page and import
-   `useragent-switcher-preferences.json` from this repository.
-5. Open `https://www.youtube.com/tv` on the PC. In the YouTube phone app,
+1. Run `Install-YouTube-PC.bat` and choose Chrome, Edge, Opera, Brave, Vivaldi, or Firefox.
+2. For Chrome, Edge, Opera, Brave, or Vivaldi, open the extensions page printed by the
+   installer, enable Developer mode, click **Load unpacked**, and select
+   the folder printed by the installer.
+3. For Firefox, open `about:debugging` > **This Firefox** >
+   **Load Temporary Add-on**, then select `manifest.json` in the folder
+   printed by the installer. Firefox removes temporary add-ons on restart.
+4. The extension starts in Custom Mode with the included YouTube rule.
+5. Click **Open YouTube TV** in the extension popup. In the YouTube phone app,
    choose **YouTube on TV** and confirm playback starts on the PC.
 
-Disable another installed copy of User-Agent Switcher and Manager before
-using this one, so both copies do not change the same YouTube request.
+Disable another copy of User-Agent Switcher and Manager in the same browser
+so both copies do not change the same YouTube request.
 
 ## Update
 
-Run `Install-YouTube-PC.bat` again to pull changes from this fork and copy the files,
-then click **Reload** on the unpacked extension at `chrome://extensions`.
-The browser's imported preferences are retained across file updates.
+Run `Install-YouTube-PC.bat` again and choose the same browser. If this is a
+Git checkout, it first pulls changes from this fork. For Chrome, Edge, Opera, Brave, or Vivaldi, click **Reload** on the unpacked extension afterward. For Firefox,
+reload the temporary add-on through `about:debugging`.
 
-The batch file copies only the `v3` extension files. It does not overwrite
-this repository or the exported preferences JSON.
+The installer copies only the `v3` extension files. The original exported preferences JSON remains in this repository.

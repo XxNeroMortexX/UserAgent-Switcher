@@ -284,7 +284,15 @@ function msg(msg) {
 document.addEventListener('click', ({target}) => {
   const cmd = target.dataset.cmd;
   if (cmd) {
-    if (cmd === 'apply') {
+    if (cmd === 'youtube-tv') {
+      chrome.windows.create({
+        url: 'https://www.youtube.com/tv',
+        type: 'popup',
+        width: 200,
+        height: 120
+      }).catch(error => msg(error.message));
+    }
+    else    if (cmd === 'apply') {
       const value = document.getElementById('ua').value;
       if (value === navigator.userAgent) {
         msg(chrome.i18n.getMessage('msgDefaultUA'));
